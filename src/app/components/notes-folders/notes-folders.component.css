@@ -1,0 +1,19 @@
+.makeCursor{
+  cursor: pointer;
+}
+
+.addNewFolderBtn{
+  font-size: 15px;
+}
+
+.addNewFolderBtn:hover{
+  color: #007bff;
+}
+
+.disabledEvents {
+  pointer-events: none;
+}
+
+.custFont{
+  font-size: 12px;
+}

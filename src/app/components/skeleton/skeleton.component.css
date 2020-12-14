@@ -1,5 +1,5 @@
 .full-height{
-  height: 100%;
+  height: 95%;
 }
 
 .notes-folder {
@@ -15,4 +15,12 @@
 .notes-editor {
   background: lightpink;
   /*height: 100%;*/
+}
+
+.custpt{
+  padding: 7px !important;
+}
+
+.custpb{
+  padding-bottom: 1px !important;
 }

@@ -9,6 +9,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NotesFoldersComponent } from './components/notes-folders/notes-folders.component';
 import { NotesListsComponent } from './components/notes-lists/notes-lists.component';
 import { NotesEditorComponent } from './components/notes-editor/notes-editor.component';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -24,7 +25,8 @@ import { NotesEditorComponent } from './components/notes-editor/notes-editor.com
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
