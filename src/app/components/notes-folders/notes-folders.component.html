@@ -1,1 +1,32 @@
-<p>notes-folders works!</p>
+<div class="notes-folders-container">
+  <ul class="container-fluid list-group" #folderList>
+    <ng-container *ngFor="let list of folderLists">
+      <li class="row list-group-item d-flex justify-content-between align-items-center" [ngClass]="{'active' : list.selected === true}" [attr.data-folderId]="list.id">
+        <span class="col-md-7" >
+          <span class="text-break custFont" [ngClass]="{'disabledEvents' : list.selected === true, 'makeCursor': list.selected === false}" (click)="selectFolder($event, list.id, folderList)"> {{list.name}} </span>
+<!--          <div class="form-group">-->
+          <input class="form-control custFont EditNewFolder d-none" #updateNewFolderField mdbInput placeholder="New Folder" type="text" (keydown)="keydown($event,list.id)" (mouseleave)="keydown($event, list.id)" [value]="list.name">
+<!--          </div>-->
+        </span>
+        <span class="col-md-5 float-right">
+          <span [ngClass]="{'d-none' : list.id === 1}">
+            <span class="makeCursor"><i class="far fa-edit mr-2" (click) = "editFolder($event, list.id, updateNewFolderField)"></i></span>
+            <span class="makeCursor"><i class="far fa-trash-alt mr-2" (click) = "deleteFolder($event, list.id, folderList)"></i></span>
+          </span>
+<!--          <mdb-icon fas class="mr-1" icon="ellipsis-h"></mdb-icon>-->
+          <mdb-badge [ngClass]="{'float-right' : list.id === 1}" pill="true" primary="true">{{list.count}}</mdb-badge>
+        </span>
+      </li>
+    </ng-container>
+    <li class="row list-group-item d-flex justify-content-between align-items-center p-0">
+<!--      <form *ngIf="addNewFolderFlag">-->
+        <!-- Default input -->
+<!--        <div class="form-group">-->
+          <input class="form-control createNewFolder m-3 d-none" #addNewFolderField mdbInput placeholder="New Folder" type="text" (keydown)="keydown($event)" (mouseleave)="keydown($event)" [value]="newFolderName">
+<!--        </div>-->
+<!--      </form>-->
+    </li>
+  </ul>
+  <!-- Extended default form grid -->
+  <div class="position-absolute fixed-bottom float-right mr-2 mb-2"><button class="btn peach-gradient float-right" (click)="addNewFolder()" ><mdb-icon fas icon="folder-plus"></mdb-icon> New Folder</button></div>
+</div>
