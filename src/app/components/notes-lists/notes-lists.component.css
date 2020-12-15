@@ -8,8 +8,17 @@
 }
 
 .list-group-item.active {
-  background-color: #6a7577;
-  border-color: #6a7577;
+  background-color: #ff7f12;
+  border-color: #ff7f12;
+}
+
+.list-group-item {
+  background-color: #d4d4d4;
+}
+
+.rmplr {
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .makeCursor {

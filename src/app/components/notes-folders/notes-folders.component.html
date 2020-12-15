@@ -1,5 +1,5 @@
 <div class="notes-folders-container">
-  <ul #folderList class="container-fluid list-group">
+  <ul #folderList class="container-fluid list-group rmplr">
     <ng-container *ngFor="let list of folderLists">
       <li [attr.data-folderId]="list.id"
           [ngClass]="{'active' : list.selected === true}" class="row list-group-item d-flex justify-content-between align-items-center">
@@ -31,7 +31,7 @@
     </li>
   </ul>
   <div class="position-absolute fixed-bottom float-right mr-2 mb-2">
-    <button (click)="addNewFolder()" class="btn peach-gradient float-right">
+    <button (click)="addNewFolder()" class="btn btn-primary float-right">
       <mdb-icon fas icon="folder-plus"></mdb-icon>
       New Folder
     </button>

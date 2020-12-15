@@ -3,17 +3,19 @@
 }
 
 .notes-folder {
-  background: lightblue;
-  /*height: 100%;*/
+  background: #e2e2e2;
+  border-right: 2px solid #dee2e6 !important;
+    /*height: 100%;*/
 }
 
 .notes-list {
-  background: lightgreen;
+  background: #d4d4d4;;
+  border-right: 2px solid #dee2e6 !important;
   /*height: 100%;*/
 }
 
 .notes-editor {
-  background: lightpink;
+  background: #e2e2e2;;
   /*height: 100%;*/
 }
 

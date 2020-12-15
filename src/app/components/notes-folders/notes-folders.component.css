@@ -7,6 +7,20 @@
   font-size: 15px;
 }
 
+.list-group-item.active {
+  background-color: #ff7f12;
+  border-color: #ff7f12;
+}
+
+.list-group-item {
+  background-color: #e2e2e2;
+}
+
+.rmplr {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
 .addNewFolderBtn:hover {
   color: #007bff;
 }

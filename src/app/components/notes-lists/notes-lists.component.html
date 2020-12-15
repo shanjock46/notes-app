@@ -1,5 +1,5 @@
 <div class="notes-lists-container">
-  <ul #notesListUl class="container-fluid list-group">
+  <ul #notesListUl class="container-fluid list-group rmplr">
     <ng-container *ngFor="let list of notesList">
       <li [attr.data-noteId]="list.note_id"
           [ngClass]="{'active' : list.selected === true}" class="custmr list-group-item d-flex justify-content-between align-items-center">
@@ -17,7 +17,7 @@
     </ng-container>
   </ul>
   <div class="position-absolute fixed-bottom float-right mr-2 mb-2">
-    <button (click)="addNewNote()" class="btn blue-gradient float-right"><i class="far fa-sticky-note"></i> New Note
+    <button (click)="addNewNote()" class="btn btn-primary float-right"><i class="far fa-sticky-note"></i> New Note
     </button>
   </div>
 </div>
