@@ -17,8 +17,8 @@ export class NotesListsComponent implements OnInit {
 
   ngOnInit(): void {
     this.notesService.getSelectedFolder().subscribe(data => {
-      console.log('in editor');
-      console.log(data);
+      // console.log('in editor');
+      // console.log(data);
       this.folderId = data.folder_id;
       this.folderLists = data.folderList;
       this.notesList = data.folderList[this.folderId]?.notes || [];
