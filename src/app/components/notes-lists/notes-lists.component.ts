@@ -26,8 +26,9 @@ export class NotesListsComponent implements OnInit {
   }
 
 
-  deleteNote($event: MouseEvent, id: any): void {
-    for (let i = 0; i < this.folderLists[this.folderId].notes.length; i++) {
+  deleteNote(): void {
+    this.folderLists[this.folderId].notes.splice(this.notesService.activeNote, 1);
+    /*for (let i = 0; i < this.folderLists[this.folderId].notes.length; i++) {
       if (this.folderLists[this.folderId].notes[i].note_id.toString() === id.toString()) {
         this.folderLists[this.folderId].notes.splice(i, 1);
       }
@@ -37,7 +38,7 @@ export class NotesListsComponent implements OnInit {
         this.folderLists[this.folderId].notes[0].selected = true;
         this.notesService.activeNote = Number(this.folderLists[this.folderId].notes[0].note_id);
       }
-    }
+    }*/
     this.notesList = this.folderLists[this.folderId]?.notes;
     this.sortDesc();
     this.notesService.sendSelectedNote(this.folderId, 0, this.folderLists);
@@ -55,7 +56,7 @@ export class NotesListsComponent implements OnInit {
       selected: true,
       updated: new Date().getTime()
     });
-    this.notesService.activeNote = Number(listId.toString());
+    this.notesService.activeNote = this.folderLists[this.folderId].notes.length - 1;
     this.notesList = this.folderLists[this.folderId]?.notes;
     this.sortDesc();
     this.notesService.sendSelectedNote(this.folderId, 0, this.folderLists);
@@ -66,7 +67,7 @@ export class NotesListsComponent implements OnInit {
     for (let i = 0; i < this.folderLists[this.folderId].notes.length; i++) {
       if (this.folderLists[this.folderId].notes[i].note_id.toString() === id.toString()) {
         this.folderLists[this.folderId].notes[i].selected = true;
-        this.notesService.activeNote = Number(this.folderLists[this.folderId].notes[i].note_id);
+        this.notesService.activeNote = i;
         this.notesService.sendSelectedNote(this.folderId, i, this.folderLists);
       } else {
         this.folderLists[this.folderId].notes[i].selected = false;
@@ -75,11 +76,12 @@ export class NotesListsComponent implements OnInit {
   }
 
   sortDesc(): void {
+    this.notesService.activeNote = 0;
     if (this.folderLists[this.folderId].notes.length > 1) {
       const sortDesc = this.folderLists[this.folderId].notes.sort((a, b) =>
         b.updated - a.updated
       );
-      console.log(sortDesc);
+      // console.log(sortDesc);
     }
   }
 

@@ -1,6 +1,12 @@
 <div class="notes-editor-container">
+  <div class="row mb-0 top-bar pt-1">
+    <span class="col-md-112 float-right note-tools">
+
+    </span>
+  </div>
+  <div class="text-center mt-1 note-updated-time">{{note.updated | date:'medium'}}</div>
   <textarea #notesTextArea="ngModel" (ngModelChange)="saveNote()" [(ngModel)]="note.content"
             [attr.data-folderId]="folderId" [attr.data-noteId]="note.note_id" class="form-control rounded-0"
-            id="exampleFormControlTextarea1">
+            id="noteEditor">
   </textarea>
 </div>

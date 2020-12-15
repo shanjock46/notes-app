@@ -3,17 +3,35 @@
   height: calc(100% - 83px);
 }
 
+.top-bar {
+  background-color: #404040 !important;
+}
+
 .custmr {
   margin-right: -15px;
 }
 
+.notes-list{
+  border-right: 2px solid #dee2e6 !important;
+}
+
+.notes-folders-container ul {
+  background-color: #222222;
+  -webkit-tap-highlight-color: #222222;
+}
+
+.notes-lists-container li {
+  border: none;
+}
+
 .list-group-item.active {
-  background-color: #ff7f12;
-  border-color: #ff7f12;
+  background-color: #e27920;
+  border-color: #e27920;
 }
 
 .list-group-item {
-  background-color: #d4d4d4;
+  background-color: #222222;
+  color: #ffffff;
 }
 
 .rmplr {
@@ -31,4 +49,16 @@
 
 .custFont {
   font-size: 12px;
+}
+
+.notes-list-tools .btn {
+  font-size: 13px;
+  padding: 4px 7px;
+  color: #ffffff;
+  background-color: #6c6c6c;
+  border: none;
+}
+
+.content-summary{
+  font-size: 10px;
 }

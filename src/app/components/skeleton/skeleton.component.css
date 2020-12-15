@@ -3,19 +3,20 @@
 }
 
 .notes-folder {
-  background: #e2e2e2;
-  border-right: 2px solid #dee2e6 !important;
+  background: #2c2c2c;
+  border-right: none !important;
   /*height: 100%;*/
 }
 
 .notes-list {
-  background: #d4d4d4;;
-  border-right: 2px solid #dee2e6 !important;
+  background: #222222;
+  border-right: none !important;
   /*height: 100%;*/
 }
 
 .notes-editor {
-  background: #e2e2e2;;
+  background: #282828;;
+  border-right: none !important;
   /*height: 100%;*/
 }
 
