@@ -84,7 +84,8 @@ export class NotesFoldersComponent implements OnInit {
     for (let i = 0; i < this.folderLists.length; i++) {
       if (this.folderLists[i].id.toString() === id.toString()) {
         this.folderLists[i].selected = true;
-        this.notesService.activeFolder = Number(this.folderLists[i].id);
+        this.notesService.activeFolderId = Number(this.folderLists[i].id);
+        this.notesService.activeFolder = i;
         // this.folderSelectEvent.emit({folder_id : i, folderList : this.folderLists});
         // console.log(this.folderLists);
         this.notesService.sendSelectedFolder(i, this.folderLists);
@@ -109,9 +110,10 @@ export class NotesFoldersComponent implements OnInit {
           this.folderLists.splice(i, 1);
         }
       }
-      if (this.notesService.activeFolder.toString() === id.toString()) {
+      if (this.notesService.activeFolderId.toString() === id.toString()) {
         this.folderLists[0].selected = true;
-        this.notesService.activeFolder = Number(this.folderLists[0].id);
+        this.notesService.activeFolderId = Number(this.folderLists[0].id);
+        this.notesService.activeFolder = 0;
       }
     }
     this.notesService.sendSelectedFolder(0, this.folderLists);
@@ -133,14 +135,30 @@ export class NotesFoldersComponent implements OnInit {
   sortDesc(): void {
     if (this.folderLists.length > 1) {
       const sortDesc = this.folderLists.sort((a, b) => b.name.localeCompare(a.name));
-      console.log(sortDesc);
+      // console.log(sortDesc);
+      for (let i = 0; i < this.folderLists.length; i++) {
+        if (this.folderLists[i].id.toString() === this.notesService.activeFolderId.toString()) {
+          this.notesService.activeFolder = i;
+          break;
+        }
+      }
+      this.notesService.sendSelectedFolder(this.notesService.activeFolder, this.folderLists);
+      this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.folderLists);
     }
   }
 
   sortAsc(): void {
     if (this.folderLists.length > 1) {
       const sortAsc = this.folderLists.sort((a, b) => a.name.localeCompare(b.name));
-      console.log(sortAsc);
+      // console.log(sortAsc);
+      for (let i = 0; i < this.folderLists.length; i++) {
+        if (this.folderLists[i].id.toString() === this.notesService.activeFolderId.toString()) {
+          this.notesService.activeFolder = i;
+          break;
+        }
+      }
+      this.notesService.sendSelectedFolder(this.notesService.activeFolder, this.folderLists);
+      this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.folderLists);
     }
   }
 }
