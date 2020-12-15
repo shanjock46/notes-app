@@ -22,8 +22,8 @@ export class NotesEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.notesService.getSelectedNote().subscribe(data => {
-      console.log('in editor');
-      console.log(data);
+      // console.log('in editor');
+      // console.log(data);
       this.folderId = data.folder_id;
       this.noteId = data.note_id;
       this.folderLists = data.folderList;
