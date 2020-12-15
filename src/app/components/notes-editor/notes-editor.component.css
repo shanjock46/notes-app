@@ -2,13 +2,21 @@
   height: 100%;
 }
 
+.rmplr {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
 .notes-editor-container textarea {
   /*border: 1px solid red;*/
   width: 100%;
   height: calc(100% - 0px);
   box-sizing: border-box;
+  background-color: #e2e2e2;
+  border-color: #e2e2e2;
 }
 
 .notes-editor-container {
   overflow: scroll;
 }
+
