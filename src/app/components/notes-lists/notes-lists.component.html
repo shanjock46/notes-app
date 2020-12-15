@@ -1,28 +1,37 @@
 <div class="notes-lists-container">
-  <!--  <div class="sorting float-right mb-1">-->
-  <!--    <span class="mr-2"><button (click)="sortDesc()" class="btn btn-light"><i class="fas fa-sort-alpha-down-alt"></i></button></span>-->
-  <!--    <span class="mr-2"><button (click)="sortAsc()" class="btn btn-light"><i class="fas fa-sort-alpha-up"></i></button></span>-->
-  <!--  </div>-->
-  <ul #notesListUl class="container-fluid list-group rmplr">
+  <div class="row mb-0 top-bar pt-1">
+    <span class="col-md-10 float-right notes-list-tools">
+        <button class="btn float-right" (click)="deleteNote()">
+          <i class="far fa-trash-alt"></i>
+        </button>
+    </span>
+    <span class="col-md-2 notes-list-tools mb-1 pb-0">
+      <span class="float-right mr-2">
+        <button (click)="addNewNote()" class="btn"><i class="far fa-edit"></i></button>
+      </span>
+<!--      <span class="float-right mr-2"><button (click)="sortDesc()" class="btn btn-light"><i-->
+<!--        class="fas fa-sort-alpha-down-alt"></i></button></span>-->
+<!--      <span class="float-right mr-2"><button (click)="sortAsc()" class="btn btn-light"><i-->
+<!--        class="fas fa-sort-alpha-up"></i></button></span>-->
+    </span>
+  </div>
+  <ul #notesListUl class="container-fluid list-group rmplr notes-list">
     <ng-container *ngFor="let list of notesList">
       <li [attr.data-noteId]="list.note_id"
           [ngClass]="{'active' : list.selected === true}"
           class="custmr list-group-item d-flex justify-content-between align-items-center">
-        <span class="col-md-7">
+        <span class="col-md-12 pl-0">
           <span (click)="selectNote($event, list.note_id, notesListUl)"
                 [ngClass]="{'disabledEvents' : list.selected === true, 'makeCursor': list.selected === false}"
-                class="text-break custFont"> {{list.content | slice:0:15}} </span>
+                class="text-break custFont"> <b>{{list.content | slice:0:25}}</b> </span><br/>
+          <span class="content-summary">{{list.content | slice:26:75}}</span>
         </span>
-        <span class="col-md-5 float-right">
-            <span class="makeCursor float-right">
-              <i (click)="deleteNote($event, list.note_id)" class="far fa-trash-alt mr-2"></i>
-            </span>
-        </span>
+
       </li>
     </ng-container>
   </ul>
-  <div class="position-absolute fixed-bottom float-right mr-2 mb-2">
-    <button (click)="addNewNote()" class="btn btn-primary float-right"><i class="far fa-sticky-note"></i> New Note
-    </button>
-  </div>
+<!--  <div class="position-absolute fixed-bottom float-right mr-2 mb-2">-->
+<!--    <button (click)="addNewNote()" class="btn btn-primary float-right"><i class="far fa-sticky-note"></i> New Note-->
+<!--    </button>-->
+<!--  </div>-->
 </div>

@@ -1,11 +1,17 @@
 <div class="notes-folders-container">
-  <div class="sorting float-right mb-1">
-    <span class="mr-2"><button (click)="sortDesc()" class="btn btn-light"><i
+  <div class="row mb-0 top-bar">
+    <span class="col-md-6 nav-item float-right">
+      <a class="nav-link" href="/"><b>My Notes</b></a>
+    </span>
+    <span class="col-md-6 sorting mb-0 pb-0">
+      <span class="float-right mr-2"><button (click)="sortDesc()" class="btn btn-light"><i
       class="fas fa-sort-alpha-down-alt"></i></button></span>
-    <span class="mr-2"><button (click)="sortAsc()" class="btn btn-light"><i
-      class="fas fa-sort-alpha-up"></i></button></span>
+      <span class="float-right mr-2"><button (click)="sortAsc()" class="btn btn-light"><i
+        class="fas fa-sort-alpha-up"></i></button></span>
+    </span>
   </div>
-  <ul #folderList class="container-fluid list-group rmplr">
+
+  <ul #folderList class="container-fluid list-group rmplr folders-list">
     <ng-container *ngFor="let list of folderLists">
       <li [attr.data-folderId]="list.id"
           [ngClass]="{'active' : list.selected === true}"
@@ -18,17 +24,18 @@
                  [value]="list.name" class="form-control custFont EditNewFolder d-none" mdbInput
                  placeholder="New Folder" type="text">
         </span>
-        <span class="col-md-5 float-right">
-          <span [ngClass]="{'d-none' : list.id === '1'}">
-            <span class="makeCursor">
-              <i (click)="editFolder($event, list.id, updateNewFolderField)" class="far fa-edit mr-2"></i>
+        <span class="col-md-5 float-right right-aside">
+          <span [ngClass]="{'row' : list.id !== '1'}">
+            <span class="col-md-7 p-0" [ngClass]="{'d-none' : list.id === '1'}">
+              <span class="col-md-3 pr-0 makeCursor">
+                <i (click)="editFolder($event, list.id, updateNewFolderField)" class="far fa-edit"></i>
+              </span>
+              <span class="col-md-3 pr-0 makeCursor">
+                <i (click)="deleteFolder($event, list.id, folderList)" class="far fa-trash-alt"></i>
+              </span>
             </span>
-            <span class="makeCursor">
-              <i (click)="deleteFolder($event, list.id, folderList)" class="far fa-trash-alt mr-2"></i>
-            </span>
+            <span [ngClass]="{'float-right' : list.id === '1'}" class="col-md-4 pr-0 notes-count">{{list.notes.length}}</span>
           </span>
-          <mdb-badge [ngClass]="{'float-right' : list.id === '1'}" pill="true"
-                     primary="true">{{list.notes.length}}</mdb-badge>
         </span>
       </li>
     </ng-container>
@@ -38,9 +45,9 @@
     </li>
   </ul>
   <div class="position-absolute fixed-bottom float-right mr-2 mb-2">
-    <button (click)="addNewFolder()" class="btn btn-primary float-right">
-      <mdb-icon fas icon="folder-plus"></mdb-icon>
+    <span (click)="addNewFolder()" class="btn add-new-folder float-right">
+      <i class="fas fa-plus-circle mr-1"></i>
       New Folder
-    </button>
+    </span>
   </div>
 </div>

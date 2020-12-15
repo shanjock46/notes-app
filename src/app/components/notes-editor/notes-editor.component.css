@@ -1,3 +1,7 @@
+.top-bar {
+  background-color: #404040 !important;
+}
+
 .notes-editor-container {
   height: 100%;
 }
@@ -10,13 +14,27 @@
 .notes-editor-container textarea {
   /*border: 1px solid red;*/
   width: 100%;
-  height: calc(100% - 0px);
+  height: calc(100% - 61px);
   box-sizing: border-box;
-  background-color: #e2e2e2;
-  border-color: #e2e2e2;
+  background-color: #282828;
+  border-color: #282828;
+  color: #ffffff;
 }
 
 .notes-editor-container {
   overflow: scroll;
 }
 
+.note-tools{
+  min-height: 33px;
+}
+
+.note-updated-time{
+  color: #727272;
+  /*background-color: #282828;*/
+}
+
+.form-control:focus {
+  border-color: #282828;
+  box-shadow: 0 0 0 0.2rem #282828;
+}

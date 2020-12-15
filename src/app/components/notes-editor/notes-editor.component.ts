@@ -45,9 +45,10 @@ export class NotesEditorComponent implements OnInit {
   }
 
   sortDesc(): void {
+    this.notesService.activeNote = 0;
     if (this.folderLists[this.folderId].notes.length > 1) {
       const sortDesc = this.folderLists[this.folderId].notes.sort((a, b) => b.updated - a.updated);
-      console.log(sortDesc);
+      // console.log(sortDesc);
     }
   }
 }
