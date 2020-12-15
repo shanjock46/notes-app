@@ -35,7 +35,7 @@ export class NotesEditorComponent implements OnInit {
   }
 
 
-  private saveNote(): void {
+  saveNote(): void {
     this.notesService.sendSelectedFolder(this.folderId, this.folderLists);
     this.notesService.sendSelectedNote(this.folderId, this.noteId, this.folderLists);
   }
