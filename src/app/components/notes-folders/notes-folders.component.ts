@@ -1,5 +1,7 @@
 /* tslint:disable:prefer-for-of */
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {NotesService} from '../../services/notes.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-notes-folders',
@@ -8,35 +10,28 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 })
 
 export class NotesFoldersComponent implements OnInit {
+  @Input() folderLists: any;
 
-  constructor() {
-
-  }
-
-  public activeFolder = 1;
   public prevNewFolderCount = 0;
-  // addNewFolderField = true ;
   @ViewChild('addNewFolderField') addNewFolderField: ElementRef;
+  @ViewChild('updateNewFolderField') updateNewFolderField: ElementRef;
   newFolderName = 'New Folder';
 
-  public folderLists: Array<any> = [
-    {id: 1, name: 'Notes', count: 1, selected: true}
-  ];
+  public folderSelectBehaviour: BehaviorSubject<any>;
 
-  ngOnInit(): void {
+  constructor(private notesService: NotesService) {
   }
 
-  /*onBlur($event): void {
-    // console.log($event);
-    this.saveFolder($event);
-  }*/
+  ngOnInit(): void {
+    this.notesService.sendSelectedFolder(0, this.folderLists);
+  }
 
   keydown($event, id: any = null): void {
-    console.log($event);
+    // console.log($event);
     if ($event.key === 'Tab' || $event.key === 'Enter') {
       if (id === null) {
         this.saveFolder($event);
-      }else{
+      } else {
         this.updateFolder($event, id);
       }
     }
@@ -46,42 +41,35 @@ export class NotesFoldersComponent implements OnInit {
     let nameVal = $event.currentTarget.value;
     // tslint:disable-next-line:only-arrow-functions
     const nameOccurCount = new Map();
-    console.log(this.folderLists);
+    // console.log(this.folderLists);
     let isPresent = false;
-    for (let i = 0; i < this.folderLists.length; i++){
-      if (this.folderLists[i].name === nameVal){
+    for (let i = 0; i < this.folderLists.length; i++) {
+      if (this.folderLists[i].name === nameVal) {
         isPresent = true;
       }
-      if (i === 0){
+      if (i === 0) {
         nameOccurCount.set(this.folderLists[i].name, 1);
-      }else{
-        if (this.folderLists[i].name in nameOccurCount ){
+      } else {
+        // @ts-ignore
+        if (this.folderLists[i].name in nameOccurCount) {
           nameOccurCount.set(this.folderLists[i].name, nameOccurCount.get(this.folderLists[i].name) + 1);
-        }else{
+        } else {
           nameOccurCount.set(this.folderLists[i].name, 1);
         }
       }
     }
 
-    console.log(nameOccurCount);
-    /*const isPresent = this.folderLists.some(function(el): boolean {
-      console.log(el.name);
-      if(el.name in nameOccurCount ){
-        nameOccurCount.set(el.name, nameOccurCount.get(el.name) + 1);
-      }else{
-        nameOccurCount.set(el.name, 1);
-      }
-      return el.name === nameVal;
-    });*/
-    if (nameVal === 'New Folder'){
+    if (nameVal === 'New Folder') {
       this.prevNewFolderCount += 1;
     }
 
-    if (nameVal === 'New Folder' && this.prevNewFolderCount !== 1){
+    if (nameVal === 'New Folder' && this.prevNewFolderCount !== 1) {
       nameVal = nameVal + ' ' + this.prevNewFolderCount;
     }
+    // @ts-ignore
     // tslint:disable-next-line:radix
-    this.folderLists.push({id: parseInt(this.folderLists[this.folderLists.length - 1].id) + 1, name: nameVal, count: 0, selected: false});
+    const listId = parseInt(this.folderLists[this.folderLists.length - 1].id) + 1;
+    this.folderLists.push({id: listId.toString(), name: nameVal, selected: false, notes: []});
     this.addNewFolderField.nativeElement.classList.add('d-none');
     $event.currentTarget.value = this.newFolderName;
   }
@@ -89,33 +77,26 @@ export class NotesFoldersComponent implements OnInit {
   addNewFolder(): void {
     this.addNewFolderField.nativeElement.classList.remove('d-none');
     this.addNewFolderField.nativeElement.focus();
-    // this.addNewFolderField.nativeElement.focus();
-    console.log('Add new folder clicked');
+    // console.log('Add new folder clicked');
   }
 
   selectFolder($event, id: any, folderList: HTMLUListElement): void {
-    // @ts-ignore
-    // for (let i = 0; i < folderList.childElementCount; i++){
-    //   // tslint:disable-next-line:triple-equals
-    //   if (folderList.children[i].getAttribute('data-folderId') === id.toString()) {
-    //     folderList.children[i].classList.add('active');
-    //     folderList.children[i].classList.add('disabledEvents');
-    //     folderList.children[i].classList.remove('makeCursor');
-    //     this.folderLists[i].selected = true;
-    //   }else{
-    //     folderList.children[i].classList.remove('active');
-    //     folderList.children[i].classList.remove('disabledEvents');
-    //     folderList.children[i].classList.add('makeCursor');
-    //     this.folderLists[i].selected = false;
-    //   }
-    // }
     for (let i = 0; i < this.folderLists.length; i++) {
-      this.folderLists[i].selected = this.folderLists[i].id.toString() === id.toString();
+      if (this.folderLists[i].id.toString() === id.toString()) {
+        this.folderLists[i].selected = true;
+        this.notesService.activeFolder = Number(this.folderLists[i].id);
+        // this.folderSelectEvent.emit({folder_id : i, folderList : this.folderLists});
+        // console.log(this.folderLists);
+        this.notesService.sendSelectedFolder(i, this.folderLists);
+        this.notesService.sendSelectedNote(i, 0, this.folderLists);
+      } else {
+        this.folderLists[i].selected = false;
+      }
     }
   }
 
-  editFolder($event: any, id: any, folderList: HTMLInputElement):void {
-    if (id.toString() !== '1'){
+  editFolder($event: any, id: any, folderList: HTMLInputElement): void {
+    if (id.toString() !== '1') {
       $event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling.children[0].classList.add('d-none');
       $event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling.children[1].classList.remove('d-none');
     }
@@ -128,10 +109,16 @@ export class NotesFoldersComponent implements OnInit {
           this.folderLists.splice(i, 1);
         }
       }
+      if (this.notesService.activeFolder.toString() === id.toString()) {
+        this.folderLists[0].selected = true;
+        this.notesService.activeFolder = Number(this.folderLists[0].id);
+      }
     }
+    this.notesService.sendSelectedFolder(0, this.folderLists);
+    this.notesService.sendSelectedNote(0, 0, this.folderLists);
   }
 
-  updateFolder($event: any, id: any) {
+  updateFolder($event: any, id: any): void {
     if (id.toString() !== '1') {
       for (let i = 0; i < this.folderLists.length; i++) {
         if (this.folderLists[i].id.toString() === id.toString()) {

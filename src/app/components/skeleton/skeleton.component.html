@@ -5,16 +5,18 @@
     </li>
   </ul>
   <div class="row full-height mb-1">
-    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12 p-1 border-right border-secondary notes-folder"><app-notes-folders></app-notes-folders></div>
-    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12 p-1 border-right border-secondary notes-list"><app-notes-lists></app-notes-lists></div>
-    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 p-1 notes-editor"><app-notes-editor></app-notes-editor></div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12 p-1 border-right border-secondary notes-folder">
+      <app-notes-folders [folderLists]="folderLists"></app-notes-folders>
+    </div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12 p-1 border-right border-secondary notes-list">
+      <app-notes-lists></app-notes-lists>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 p-1 notes-editor">
+      <app-notes-editor></app-notes-editor>
+    </div>
   </div>
-  <!-- Footer -->
   <footer class="row page-footer font-small special-color-dark custpt">
-    <!-- Copyright -->
     <div class="p-1">Shanjock46</div>
-    <!-- Copyright -->
   </footer>
-  <!-- Footer -->
 </div>
 

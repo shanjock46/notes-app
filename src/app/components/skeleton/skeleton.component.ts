@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NotesService} from '../../services/notes.service';
 
 @Component({
   selector: 'app-skeleton',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkeletonComponent implements OnInit {
 
-  constructor() { }
+  public folderLists: any[];
+
+  constructor(private noteService: NotesService) {
+  }
 
   ngOnInit(): void {
+    this.folderLists = this.noteService.folderLists;
   }
 
 }

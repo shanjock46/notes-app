@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NotesEditorComponent } from './notes-editor.component';
+import {NotesEditorComponent} from './notes-editor.component';
 
 describe('NotesEditorComponent', () => {
   let component: NotesEditorComponent;
@@ -8,9 +8,9 @@ describe('NotesEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesEditorComponent ]
+      declarations: [NotesEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

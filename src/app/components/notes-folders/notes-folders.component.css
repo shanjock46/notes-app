@@ -1,19 +1,24 @@
-.makeCursor{
-  cursor: pointer;
+.notes-folders-container {
+  overflow: scroll;
+  height: calc(100% - 70px);
 }
 
-.addNewFolderBtn{
+.addNewFolderBtn {
   font-size: 15px;
 }
 
-.addNewFolderBtn:hover{
+.addNewFolderBtn:hover {
   color: #007bff;
+}
+
+.makeCursor {
+  cursor: pointer;
 }
 
 .disabledEvents {
   pointer-events: none;
 }
 
-.custFont{
+.custFont {
   font-size: 12px;
 }

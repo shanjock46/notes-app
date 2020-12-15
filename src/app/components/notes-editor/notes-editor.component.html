@@ -1,1 +1,6 @@
-<p>notes-editor works!</p>
+<div class="notes-editor-container">
+  <textarea #notesTextArea="ngModel" (ngModelChange)="saveNote()" [(ngModel)]="note.content"
+            [attr.data-folderId]="folderId" [attr.data-noteId]="note.note_id" class="form-control rounded-0"
+            id="exampleFormControlTextarea1">
+  </textarea>
+</div>]
