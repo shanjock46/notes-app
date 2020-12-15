@@ -7,6 +7,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 export class NotesService {
   public folderLists: any[];
   public activeFolder = 1;
+  public activeFolderId = 1;
   public activeNote = 1;
   public selectFolderSubscriber: BehaviorSubject<any>;
   public selectNoteSubscriber: BehaviorSubject<any>;

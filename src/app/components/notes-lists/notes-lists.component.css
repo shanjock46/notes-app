@@ -1,6 +1,7 @@
 .notes-lists-container {
   overflow: scroll;
   height: calc(100% - 83px);
+  color: #ffffff;
 }
 
 .top-bar {
