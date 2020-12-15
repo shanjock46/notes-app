@@ -129,4 +129,18 @@ export class NotesFoldersComponent implements OnInit {
       }
     }
   }
+
+  sortDesc(): void {
+    if (this.folderLists.length > 1) {
+      const sortDesc = this.folderLists.sort((a, b) => b.name.localeCompare(a.name));
+      console.log(sortDesc);
+    }
+  }
+
+  sortAsc(): void {
+    if (this.folderLists.length > 1) {
+      const sortAsc = this.folderLists.sort((a, b) => a.name.localeCompare(b.name));
+      console.log(sortAsc);
+    }
+  }
 }

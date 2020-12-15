@@ -36,3 +36,12 @@
 .custFont {
   font-size: 12px;
 }
+
+.sorting {
+  font-size: 20px;
+}
+
+.sorting .btn {
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+}

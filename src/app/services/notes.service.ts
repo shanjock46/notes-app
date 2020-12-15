@@ -17,7 +17,8 @@ export class NotesService {
         {
           note_id: '1',
           selected: true,
-          content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+          content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+          updated: new Date().getTime()
         }
       ]
     }]);

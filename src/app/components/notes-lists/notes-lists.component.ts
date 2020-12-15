@@ -39,8 +39,8 @@ export class NotesListsComponent implements OnInit {
       }
     }
     this.notesList = this.folderLists[this.folderId]?.notes;
-    // console.log(this.notesList);
-    this.notesService.sendSelectedNote(0, 0, this.folderLists);
+    this.sortDesc();
+    this.notesService.sendSelectedNote(this.folderId, 0, this.folderLists);
   }
 
   addNewNote(): void {
@@ -49,10 +49,16 @@ export class NotesListsComponent implements OnInit {
       this.folderLists[this.folderId].notes[i].selected = false;
     }
     const listId = this.notesList.length + 1;
-    this.folderLists[this.folderId].notes.push({note_id: listId.toString(), content: 'new note', selected: true});
+    this.folderLists[this.folderId].notes.push({
+      note_id: listId.toString(),
+      content: 'new note',
+      selected: true,
+      updated: new Date().getTime()
+    });
     this.notesService.activeNote = Number(listId.toString());
     this.notesList = this.folderLists[this.folderId]?.notes;
-    this.notesService.sendSelectedNote(this.folderId, listId - 1, this.folderLists);
+    this.sortDesc();
+    this.notesService.sendSelectedNote(this.folderId, 0, this.folderLists);
   }
 
   selectNote($event: MouseEvent, id: any, notesList: HTMLUListElement): void {
@@ -65,6 +71,22 @@ export class NotesListsComponent implements OnInit {
       } else {
         this.folderLists[this.folderId].notes[i].selected = false;
       }
+    }
+  }
+
+  sortDesc(): void {
+    if (this.folderLists[this.folderId].notes.length > 1) {
+      const sortDesc = this.folderLists[this.folderId].notes.sort((a, b) =>
+        b.updated - a.updated
+      );
+      console.log(sortDesc);
+    }
+  }
+
+  sortAsc(): void {
+    if (this.folderLists[this.folderId].notes.length > 1) {
+      const sortAsc = this.folderLists[this.folderId].notes.sort((a, b) => a.updated - b.updated);
+      console.log(sortAsc);
     }
   }
 }

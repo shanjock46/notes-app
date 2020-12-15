@@ -36,7 +36,18 @@ export class NotesEditorComponent implements OnInit {
 
 
   saveNote(): void {
+    if (typeof this.folderLists[this.folderId].notes[this.noteId] !== 'undefined') {
+      this.folderLists[this.folderId].notes[this.noteId].updated = new Date().getTime();
+    }
+    this.sortDesc();
     this.notesService.sendSelectedFolder(this.folderId, this.folderLists);
-    this.notesService.sendSelectedNote(this.folderId, this.noteId, this.folderLists);
+    this.notesService.sendSelectedNote(this.folderId, 0, this.folderLists);
+  }
+
+  sortDesc(): void {
+    if (this.folderLists[this.folderId].notes.length > 1) {
+      const sortDesc = this.folderLists[this.folderId].notes.sort((a, b) => b.updated - a.updated);
+      console.log(sortDesc);
+    }
   }
 }
