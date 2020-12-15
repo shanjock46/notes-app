@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NotesFoldersComponent } from './notes-folders.component';
+import {NotesFoldersComponent} from './notes-folders.component';
 
 describe('NotesFoldersComponent', () => {
   let component: NotesFoldersComponent;
@@ -8,9 +8,9 @@ describe('NotesFoldersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesFoldersComponent ]
+      declarations: [NotesFoldersComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

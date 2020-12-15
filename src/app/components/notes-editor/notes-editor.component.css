@@ -1,0 +1,14 @@
+.notes-editor-container {
+  height: 100%;
+}
+
+.notes-editor-container textarea {
+  /*border: 1px solid red;*/
+  width: 100%;
+  height: calc(100% - 0px);
+  box-sizing: border-box;
+}
+
+.notes-editor-container {
+  overflow: scroll;
+}

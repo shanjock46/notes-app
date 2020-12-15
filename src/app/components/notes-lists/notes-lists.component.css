@@ -1,0 +1,25 @@
+.notes-lists-container {
+  overflow: scroll;
+  height: calc(100% - 83px);
+}
+
+.custmr {
+  margin-right: -15px;
+}
+
+.list-group-item.active {
+  background-color: #6a7577;
+  border-color: #6a7577;
+}
+
+.makeCursor {
+  cursor: pointer;
+}
+
+.disabledEvents {
+  pointer-events: none;
+}
+
+.custFont {
+  font-size: 12px;
+}

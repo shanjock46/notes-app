@@ -1,1 +1,23 @@
-<p>notes-lists works!</p>
+<div class="notes-lists-container">
+  <ul #notesListUl class="container-fluid list-group">
+    <ng-container *ngFor="let list of notesList">
+      <li [attr.data-noteId]="list.note_id"
+          [ngClass]="{'active' : list.selected === true}" class="custmr list-group-item d-flex justify-content-between align-items-center">
+        <span class="col-md-7">
+          <span (click)="selectNote($event, list.note_id, notesListUl)"
+                [ngClass]="{'disabledEvents' : list.selected === true, 'makeCursor': list.selected === false}"
+                class="text-break custFont"> {{list.content | slice:0:15}} </span>
+        </span>
+        <span class="col-md-5 float-right">
+            <span class="makeCursor float-right">
+              <i (click)="deleteNote($event, list.note_id)" class="far fa-trash-alt mr-2"></i>
+            </span>
+        </span>
+      </li>
+    </ng-container>
+  </ul>
+  <div class="position-absolute fixed-bottom float-right mr-2 mb-2">
+    <button (click)="addNewNote()" class="btn blue-gradient float-right"><i class="far fa-sticky-note"></i> New Note
+    </button>
+  </div>
+</div>

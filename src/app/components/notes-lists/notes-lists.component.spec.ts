@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NotesListsComponent } from './notes-lists.component';
+import {NotesListsComponent} from './notes-lists.component';
 
 describe('NotesListsComponent', () => {
   let component: NotesListsComponent;
@@ -8,9 +8,9 @@ describe('NotesListsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesListsComponent ]
+      declarations: [NotesListsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
