@@ -68,10 +68,11 @@ export class NotesFoldersComponent implements OnInit {
     }
     // @ts-ignore
     // tslint:disable-next-line:radix
-    const listId = parseInt(this.folderLists[this.folderLists.length - 1].id) + 1;
+    const listId = parseInt(this.findLastInsertedFolderId()) + 1;
     this.folderLists.push({id: listId.toString(), name: nameVal, selected: false, notes: []});
     this.addNewFolderField.nativeElement.classList.add('invisible');
     $event.currentTarget.value = this.newFolderName;
+    this.sortAsc();
   }
 
   addNewFolder(): void {
@@ -160,5 +161,15 @@ export class NotesFoldersComponent implements OnInit {
       this.notesService.sendSelectedFolder(this.notesService.activeFolder, this.folderLists);
       this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.folderLists);
     }
+  }
+
+  findLastInsertedFolderId(): number {
+    let lastId = 0;
+    for (let i = 0; i < this.folderLists.length; i++) {
+      if (Number(this.folderLists[i].id) > lastId) {
+        lastId = this.folderLists[i].id;
+      }
+    }
+    return lastId;
   }
 }

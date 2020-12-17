@@ -1,16 +1,16 @@
 <div class="notes-folders-container h-100">
   <div class="row mb-0 top-bar">
-    <span class="col-md-6 nav-item float-right">
+    <span class="col-md-12 nav-item float-right">
       <a class="nav-link" href="/"><b>My Notes</b></a>
     </span>
-    <span class="col-md-6 sorting mb-0 pb-0">
+    <!--<span class="col-md-6 sorting mb-0 pb-0">
       <span class="float-right mr-2"><button (click)="sortDesc()" class="btn btn-light"><i
       class="fas fa-sort-alpha-down-alt"></i></button></span>
       <span class="float-right mr-2"><button (click)="sortAsc()" class="btn btn-light"><i
         class="fas fa-sort-alpha-up"></i></button></span>
-    </span>
+    </span>-->
   </div>
-
+<!--  <span style="color: aliceblue">{{folderLists | json}}</span>-->
   <ul #folderList class="container-fluid list-group rmplr folders-list">
     <ng-container *ngFor="let list of folderLists">
       <li [attr.data-folderId]="list.id"
