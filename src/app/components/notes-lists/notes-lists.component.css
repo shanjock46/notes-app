@@ -1,6 +1,7 @@
 .notes-lists-container {
-  overflow: scroll;
-  height: calc(100% - 83px);
+  overflow-x: hidden;
+  /*overflow: scroll;*/
+  /*height: calc(100% - 83px);*/
   color: #ffffff;
 }
 
@@ -13,10 +14,12 @@
 }
 
 .notes-list{
-  border-right: 2px solid #dee2e6 !important;
+  border-right: 2px solid #282828 !important;
 }
 
 .notes-folders-container ul {
+  overflow-y: scroll;
+  /*height: calc(100% - 83px);*/
   background-color: #222222;
   -webkit-tap-highlight-color: #222222;
 }

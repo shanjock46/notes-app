@@ -3,7 +3,8 @@
 }
 
 .notes-editor-container {
-  height: 100%;
+  overflow-x: hidden;
+  /*height: 100%;*/
 }
 
 .rmplr {
@@ -14,7 +15,7 @@
 .notes-editor-container textarea {
   /*border: 1px solid red;*/
   width: 100%;
-  height: calc(100% - 61px);
+  /*height: calc(100% - 61px);*/
   box-sizing: border-box;
   background-color: #282828;
   border-color: #282828;
