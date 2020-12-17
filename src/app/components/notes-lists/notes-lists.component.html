@@ -1,4 +1,4 @@
-<div class="notes-lists-container">
+<div class="notes-lists-container h-100">
   <div class="row mb-0 top-bar pt-1">
     <span class="col-md-10 float-right notes-list-tools">
         <button class="btn float-right" (click)="deleteNote()">
@@ -15,7 +15,7 @@
 <!--        class="fas fa-sort-alpha-up"></i></button></span>-->
     </span>
   </div>
-  <ul #notesListUl class="container-fluid list-group rmplr notes-list">
+  <ul #notesListUl class="container-fluid list-group rmplr notes-list h-100">
     <ng-container *ngFor="let list of notesList">
       <li [attr.data-noteId]="list.note_id"
           [ngClass]="{'active' : list.selected === true}"

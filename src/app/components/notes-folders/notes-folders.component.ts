@@ -70,12 +70,12 @@ export class NotesFoldersComponent implements OnInit {
     // tslint:disable-next-line:radix
     const listId = parseInt(this.folderLists[this.folderLists.length - 1].id) + 1;
     this.folderLists.push({id: listId.toString(), name: nameVal, selected: false, notes: []});
-    this.addNewFolderField.nativeElement.classList.add('d-none');
+    this.addNewFolderField.nativeElement.classList.add('invisible');
     $event.currentTarget.value = this.newFolderName;
   }
 
   addNewFolder(): void {
-    this.addNewFolderField.nativeElement.classList.remove('d-none');
+    this.addNewFolderField.nativeElement.classList.remove('invisible');
     this.addNewFolderField.nativeElement.focus();
     // console.log('Add new folder clicked');
   }

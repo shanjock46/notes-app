@@ -1,4 +1,4 @@
-<div class="notes-editor-container">
+<div class="notes-editor-container h-100">
   <div class="row mb-0 top-bar pt-1">
     <span class="col-md-112 float-right note-tools">
 
@@ -6,7 +6,7 @@
   </div>
   <div class="text-center mt-1 note-updated-time">{{note.updated | date:'medium'}}</div>
   <textarea #notesTextArea="ngModel" (ngModelChange)="saveNote()" [(ngModel)]="note.content"
-            [attr.data-folderId]="folderId" [attr.data-noteId]="note.note_id" class="form-control rounded-0"
+            [attr.data-folderId]="folderId" [attr.data-noteId]="note.note_id" class="form-control rounded-0 h-100"
             id="noteEditor">
   </textarea>
 </div>

@@ -1,4 +1,4 @@
-<div class="notes-folders-container">
+<div class="notes-folders-container h-100">
   <div class="row mb-0 top-bar">
     <span class="col-md-6 nav-item float-right">
       <a class="nav-link" href="/"><b>My Notes</b></a>
@@ -41,13 +41,14 @@
     </ng-container>
     <li class="row list-group-item d-flex justify-content-between align-items-center p-0">
       <input #addNewFolderField (keydown)="keydown($event)" (mouseleave)="keydown($event)" [value]="newFolderName"
-             class="form-control createNewFolder m-3 d-none" mdbInput placeholder="New Folder" type="text">
+             class="form-control createNewFolder m-3 invisible" mdbInput placeholder="New Folder" type="text">
     </li>
-  </ul>
-  <div class="position-absolute fixed-bottom float-right mr-2 mb-2">
-    <span (click)="addNewFolder()" class="btn add-new-folder float-right">
+    <div class="position-absolute fixed-bottom ml-2 mb-2">
+    <span (click)="addNewFolder()" class="btn add-new-folder">
       <i class="fas fa-plus-circle mr-1"></i>
       New Folder
     </span>
-  </div>
+    </div>
+  </ul>
+
 </div>
