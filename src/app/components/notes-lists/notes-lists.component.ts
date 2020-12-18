@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {NotesService} from '../../services/notes.service';
 import {Folder} from '../../interfaces/folder';
 
@@ -8,9 +8,11 @@ import {Folder} from '../../interfaces/folder';
   styleUrls: ['./notes-lists.component.css']
 })
 export class NotesListsComponent implements OnInit {
+  @Output('defaultLayout')
   public folderId: string;
   public folderLists: Folder[];
   public notesList: any[] = [];
+  public defaultLayout: boolean;
 
   constructor(private notesService: NotesService) {
   }
@@ -23,6 +25,9 @@ export class NotesListsComponent implements OnInit {
       this.folderLists = data.folderList;
       this.notesList = data.folderList[this.folderId]?.notes || [];
       // console.log(this.notesList);
+    });
+    this.notesService.getToggleLayouts().subscribe(data => {
+      this.defaultLayout = data.toggleLayouts;
     });
   }
 
@@ -91,5 +96,10 @@ export class NotesListsComponent implements OnInit {
       const sortAsc = this.folderLists[this.folderId].notes.sort((a, b) => a.updated - b.updated);
       console.log(sortAsc);
     }
+  }
+
+  toggleLayout(): void {
+    this.defaultLayout = !this.defaultLayout;
+    this.notesService.sendToggleLayouts(this.defaultLayout);
   }
 }

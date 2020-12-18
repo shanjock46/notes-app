@@ -24,7 +24,7 @@ a.nav-link {
   -webkit-tap-highlight-color: #2c2c2c;
 }
 
-.folders-list{
+.folders-list {
   border-right: 2px solid #222222 !important;
 }
 
@@ -42,7 +42,7 @@ li.active.right-aside.notes-count {
   color: #9a9a9a;
 }
 
-.add-new-folder{
+.add-new-folder {
   color: #acacab;
 }
 

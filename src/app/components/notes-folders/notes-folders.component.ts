@@ -1,7 +1,6 @@
 /* tslint:disable:prefer-for-of */
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {NotesService} from '../../services/notes.service';
-import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-notes-folders',
@@ -11,19 +10,21 @@ import {BehaviorSubject} from 'rxjs';
 
 export class NotesFoldersComponent implements OnInit {
   @Input() folderLists: any;
+  @Input() defaultLayout: any;
 
   public prevNewFolderCount = 0;
   @ViewChild('addNewFolderField') addNewFolderField: ElementRef;
   @ViewChild('updateNewFolderField') updateNewFolderField: ElementRef;
   newFolderName = 'New Folder';
 
-  public folderSelectBehaviour: BehaviorSubject<any>;
+  // public folderSelectBehaviour: BehaviorSubject<any>;
 
   constructor(private notesService: NotesService) {
   }
 
   ngOnInit(): void {
     this.notesService.sendSelectedFolder(0, this.folderLists);
+    this.notesService.sendToggleLayouts(this.defaultLayout);
   }
 
   keydown($event, id: any = null): void {

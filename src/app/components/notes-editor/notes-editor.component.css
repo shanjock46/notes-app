@@ -26,11 +26,11 @@
   overflow: scroll;
 }
 
-.note-tools{
+.note-tools {
   min-height: 33px;
 }
 
-.note-updated-time{
+.note-updated-time {
   color: #727272;
   /*background-color: #282828;*/
 }

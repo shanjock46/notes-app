@@ -10,7 +10,7 @@
         class="fas fa-sort-alpha-up"></i></button></span>
     </span>-->
   </div>
-<!--  <span style="color: aliceblue">{{folderLists | json}}</span>-->
+  <!--  <span style="color: aliceblue">{{folderLists | json}}</span>-->
   <ul #folderList class="container-fluid list-group rmplr folders-list">
     <ng-container *ngFor="let list of folderLists">
       <li [attr.data-folderId]="list.id"
@@ -26,7 +26,7 @@
         </span>
         <span class="col-md-5 float-right right-aside">
           <span [ngClass]="{'row' : list.id !== '1'}">
-            <span class="col-md-7 p-0" [ngClass]="{'d-none' : list.id === '1'}">
+            <span [ngClass]="{'d-none' : list.id === '1'}" class="col-md-7 p-0">
               <span class="col-md-3 pr-0 makeCursor">
                 <i (click)="editFolder($event, list.id, updateNewFolderField)" class="far fa-edit"></i>
               </span>
@@ -34,7 +34,8 @@
                 <i (click)="deleteFolder($event, list.id, folderList)" class="far fa-trash-alt"></i>
               </span>
             </span>
-            <span [ngClass]="{'float-right' : list.id === '1'}" class="col-md-4 pr-0 notes-count">{{list.notes.length}}</span>
+            <span [ngClass]="{'float-right' : list.id === '1'}"
+                  class="col-md-4 pr-0 notes-count">{{list.notes.length}}</span>
           </span>
         </span>
       </li>
