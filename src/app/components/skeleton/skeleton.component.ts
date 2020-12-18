@@ -27,45 +27,37 @@ export class SkeletonComponent implements OnInit {
     this.notes = JSON.parse(JSON.stringify(this.notesService.notes));
     this.defaultLayout = this.notesService.defaultLayout;
     this.get_api_init();
-    /*this.notesService.get_all_notes().subscribe((notesData) => {
-      this.notes = this.notesService.notes = notesData;
-      this.notesService.sortNotesDesc();
-    }, (error) => {
-      console.log('Error retrieving Notes list from Json-server', error);
-    });*/
   }
 
   ngOnInit(): void {
-    // this.folderLists = this.notesService.folderLists;
     this.notesService.getToggleLayouts().subscribe(data => {
       this.defaultLayout = data.toggleLayouts;
     });
   }
 
   async get_api_init(): Promise<void> {
-    this.notesService.get_all_folders().subscribe( async (foldersData) => {
+    this.notesService.get_all_folders().subscribe(async (foldersData) => {
       this.folders = this.notesService.folders = foldersData;
       const sortedFolders = await this.notesService.sortFoldersAsc();
-      // this.folders = sortedFolders.folderLists;
-      this.folders  = JSON.parse(JSON.stringify(sortedFolders.foldersList));
+      this.folders = JSON.parse(JSON.stringify(sortedFolders.foldersList));
       this.notesService.sendSelectedFolder(this.notesService.activeFolder, this.folders);
-      this.notesService.get_active_folder_notes(sortedFolders.activeFolderId).subscribe( async (notesData) => {
-          this.notes = this.notesService.notes = notesData;
-          const sortedNotes = await this.notesService.sortNotesDesc();
-          console.log(sortedNotes);
-          this.notes  = JSON.parse(JSON.stringify(sortedNotes.notesList));
-          this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.notes);
-          console.log(this.notes);
-        }, (error) => {
-          console.log('Error retrieving specific folder Notes list from Json-server', error);
-        });
+      this.notesService.get_active_folder_notes(sortedFolders.activeFolderId).subscribe(async (notesData) => {
+        this.notes = this.notesService.notes = notesData;
+        const sortedNotes = await this.notesService.sortNotesDesc();
+        console.log(sortedNotes);
+        this.notes = JSON.parse(JSON.stringify(sortedNotes.notesList));
+        this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.notes);
+        console.log(this.notes);
+      }, (error) => {
+        console.log('Error retrieving specific folder Notes list from Json-server', error);
+      });
     }, (error) => {
       console.log('Error retrieving Folders list from Json-server', error);
     });
 
     this.notesService.get_all_notes().subscribe((allNotes) => {
       this.allNotes = this.notesService.allNotes = allNotes;
-      const groupedAllNotes = this.allNotes.reduce( (r, a) => {
+      const groupedAllNotes = this.allNotes.reduce((r, a) => {
         r[a.folderId] = r[a.folderId] || [];
         r[a.folderId].push(a);
         return r;
