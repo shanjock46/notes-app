@@ -34,7 +34,7 @@ export class NotesListsComponent implements OnInit {
 
   deleteNote(): void {
     this.notesService.deleteNote(this.notesService.activeNoteId).subscribe(async (data) => {
-      console.log(data);
+      // console.log(data);
       this.notes.splice(this.notesService.activeNote, 1);
       this.notesService.notes = this.notes;
       this.notes[0].selected = true;
@@ -43,7 +43,7 @@ export class NotesListsComponent implements OnInit {
           this.notes[0] = updatedNoteData;
           this.notesService.notes = this.notes;
           const sortedNotes = await this.notesService.sortNotesDesc();
-          console.log(sortedNotes);
+          // console.log(sortedNotes);
           this.notes = JSON.parse(JSON.stringify(sortedNotes.notesList));
           this.notesService.sendSelectedNote(this.notesService.activeFolder, this.notesService.activeNote, this.notes);
         },

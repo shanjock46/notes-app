@@ -44,10 +44,10 @@ export class SkeletonComponent implements OnInit {
       this.notesService.get_active_folder_notes(sortedFolders.activeFolderId).subscribe(async (notesData) => {
         this.notes = this.notesService.notes = notesData;
         const sortedNotes = await this.notesService.sortNotesDesc();
-        console.log(sortedNotes);
+        // console.log(sortedNotes);
         this.notes = JSON.parse(JSON.stringify(sortedNotes.notesList));
         this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.notes);
-        console.log(this.notes);
+        // console.log(this.notes);
       }, (error) => {
         console.log('Error retrieving specific folder Notes list from Json-server', error);
       });
@@ -62,10 +62,10 @@ export class SkeletonComponent implements OnInit {
         r[a.folderId].push(a);
         return r;
       }, Object.create(null));
-      console.log(groupedAllNotes);
+      // console.log(groupedAllNotes);
       this.notesService.allNotes = this.allNotes = JSON.parse(JSON.stringify(groupedAllNotes));
-      console.log(this.allNotes);
-      console.log(this.notesService.allNotes);
+      // console.log(this.allNotes);
+      // console.log(this.notesService.allNotes);
     }, (error) => {
       console.log('Error retrieving All notes list from Json-server', error);
     });
