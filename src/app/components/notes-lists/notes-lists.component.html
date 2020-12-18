@@ -24,14 +24,9 @@
         <span class="float-right mr-2">
           <button (click)="addNewNote()" class="btn"><i class="far fa-edit"></i></button>
         </span>
-        <!--      <span class="float-right mr-2"><button (click)="sortDesc()" class="btn btn-light"><i-->
-        <!--        class="fas fa-sort-alpha-down-alt"></i></button></span>-->
-        <!--      <span class="float-right mr-2"><button (click)="sortAsc()" class="btn btn-light"><i-->
-        <!--        class="fas fa-sort-alpha-up"></i></button></span>-->
       </span>
     </div>
   </div>
-<!--  <span style="color: aliceblue">{{notes | json}}</span>-->
   <ul #notesListUl class="container-fluid list-group rmplr notes-list h-100">
     <ng-container *ngFor="let list of notes">
       <li [attr.data-noteId]="list.id"
@@ -47,8 +42,4 @@
       </li>
     </ng-container>
   </ul>
-  <!--  <div class="position-absolute fixed-bottom float-right mr-2 mb-2">-->
-  <!--    <button (click)="addNewNote()" class="btn btn-primary float-right"><i class="far fa-sticky-note"></i> New Note-->
-  <!--    </button>-->
-  <!--  </div>-->
 </div>

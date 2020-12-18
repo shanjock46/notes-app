@@ -4,12 +4,11 @@
 
     </span>
   </div>
-<!--  <span style="color: aliceblue">{{editNote | json}}</span>-->
-  <div *ngIf="editNote !== undefined" class="text-center mt-1 note-updated-time">{{editNote.updated | date:'medium'}}</div>
-  <textarea *ngIf="editNote !== undefined" #notesTextArea="ngModel" (ngModelChange)="updateNote()" [(ngModel)]="editNote.content"
+  <div *ngIf="editNote !== undefined"
+       class="text-center mt-1 note-updated-time">{{editNote.updated | date:'medium'}}</div>
+  <textarea #notesTextArea="ngModel" (ngModelChange)="updateNote()" *ngIf="editNote !== undefined"
+            [(ngModel)]="editNote.content"
             [attr.data-folderId]="folderId" [attr.data-noteId]="editNote.id" class="form-control rounded-0 h-100"
             id="noteEditor">
   </textarea>
-<!--  <textarea *ngIf="editNote === {}" class="form-control rounded-0 h-100" id="dummyNoteEditor">-->
-<!--  </textarea>-->
 </div>

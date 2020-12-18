@@ -1,7 +1,5 @@
 .notes-lists-container {
   overflow-x: hidden;
-  /*overflow: scroll;*/
-  /*height: calc(100% - 83px);*/
   color: #ffffff;
 }
 
@@ -19,7 +17,6 @@
 
 .notes-folders-container ul {
   overflow-y: scroll;
-  /*height: calc(100% - 83px);*/
   background-color: #222222;
   -webkit-tap-highlight-color: #222222;
 }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
@@ -61,7 +61,6 @@ export class NotesService {
   }
 
   sendToggleLayouts(defaultLayout: any): void {
-    // toggleLayoutsBol = toggleLayoutsBol ? false : true;
     this.toggleLayoutsSubscriber.next({toggleLayouts: defaultLayout});
   }
 
@@ -97,9 +96,10 @@ export class NotesService {
           break;
         }
       }
-      const retVal = { activeFolderLi: this.activeFolder, activeFolderId: this.activeFolderId, foldersList: this.folders };
-      return new Promise(resolve => { resolve(retVal); });
-      // return retVal.toPromise();
+      const retVal = {activeFolderLi: this.activeFolder, activeFolderId: this.activeFolderId, foldersList: this.folders};
+      return new Promise(resolve => {
+        resolve(retVal);
+      });
     }
   }
 
@@ -114,37 +114,19 @@ export class NotesService {
             this.notes[i].selected = true;
             this.updateNote(this.notes[i]);
           }
-        }else{
-          if (this.notes[i].selected){
+        } else {
+          if (this.notes[i].selected) {
             this.notes[i].selected = false;
             this.updateNote(this.notes[i]);
           }
         }
       }
-      const retVal = { activeNoteLi: this.activeNote, activeNoteId: this.activeNoteId, notesList: this.notes };
-      return new Promise(resolve => { resolve(retVal); });
-      // return retVal.toPromise();
+      const retVal = {activeNoteLi: this.activeNote, activeNoteId: this.activeNoteId, notesList: this.notes};
+      return new Promise(resolve => {
+        resolve(retVal);
+      });
     }
   }
-
-  /*sortNotesDesc(): Promise<any>{
-    if (typeof (this.notes) !== 'undefined') {
-      this.notes.sort((a, b) =>
-        b.updated - a.updated
-      );
-      for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].selected) {
-          this.activeNote = i;
-          this.activeNoteId = this.notes[i].id;
-          break;
-        }
-      }
-      const retVal = { activeNoteLi: this.activeNote, activeNoteId: this.activeNoteId, notesList: this.notes };
-      return new Promise(resolve => { resolve(retVal); });
-
-      // this.sendSelectedNote(this.activeFolder, 0, this.notes);
-    }
-  }*/
 
   saveFolder(param: { name: string; selected: boolean }): Observable<any> {
     return this.http.post(`${this.url}/folders/`, param);
@@ -158,7 +140,7 @@ export class NotesService {
     return this.http.delete(`${this.url}/folders/` + id);
   }
 
-  saveNote(param: {folderId: string, content: string, selected: boolean, updated: number }): Observable<any> {
+  saveNote(param: { folderId: string, content: string, selected: boolean, updated: number }): Observable<any> {
     return this.http.post(`${this.url}/notes/`, param);
   }
 
