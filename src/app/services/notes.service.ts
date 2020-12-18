@@ -9,8 +9,10 @@ export class NotesService {
   public activeFolder = 1;
   public activeFolderId = 1;
   public activeNote = 1;
+  public defaultLayout: boolean;
   public selectFolderSubscriber: BehaviorSubject<any>;
   public selectNoteSubscriber: BehaviorSubject<any>;
+  public toggleLayoutsSubscriber: BehaviorSubject<any>;
 
   constructor() {
     this.folderLists = Object.assign([], [{
@@ -23,8 +25,10 @@ export class NotesService {
         }
       ]
     }]);
+    this.defaultLayout = true;
     this.selectFolderSubscriber = new BehaviorSubject<any>({folder_id: 0, folderList: this.folderLists});
     this.selectNoteSubscriber = new BehaviorSubject<any>({folder_id: 0, note_id: 0, folderList: this.folderLists});
+    this.toggleLayoutsSubscriber = new BehaviorSubject<any>({toggleLayouts: true});
   }
 
   sendSelectedFolder(id: any, folderLists: any): void {
@@ -41,6 +45,15 @@ export class NotesService {
 
   getSelectedNote(): Observable<any> {
     return this.selectNoteSubscriber.asObservable();
+  }
+
+  sendToggleLayouts(defaultLayout: any): void {
+    // toggleLayoutsBol = toggleLayoutsBol ? false : true;
+    this.toggleLayoutsSubscriber.next({toggleLayouts: defaultLayout});
+  }
+
+  getToggleLayouts(): Observable<any> {
+    return this.toggleLayoutsSubscriber.asObservable();
   }
 
 }

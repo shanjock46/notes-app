@@ -16,6 +16,7 @@ export class NotesEditorComponent implements OnInit {
   public folderLists: Folder[];
   public note: any;
   subscription: Subscription;
+  public defaultLayout = true;
 
   constructor(private notesService: NotesService) {
   }
@@ -30,6 +31,11 @@ export class NotesEditorComponent implements OnInit {
       this.note = data.folderList[this.folderId]?.notes[this.noteId] || {};
       // console.log(this.note);
     });
+
+    this.notesService.getToggleLayouts().subscribe(data => {
+      this.defaultLayout = data.toggleLayouts;
+    });
+
     const source = interval(10000);
     // console.log(this.notesTextArea);
     this.subscription = source.subscribe(data => this.saveNote());
