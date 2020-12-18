@@ -12,10 +12,16 @@
   <!--  </ul>-->
   <div class="row full-height mb-0 h-100">
     <div class="{{defaultLayout ? defaultFolderLayout: hideFolderLayout}}">
-      <app-notes-folders [defaultLayout]="defaultLayout" [folderLists]="folderLists"></app-notes-folders>
+      <app-notes-folders
+        [defaultLayout]="defaultLayout"
+        [folders]="folders"
+        [notes]="notes"
+        [allNotes]="allNotes"
+      >
+      </app-notes-folders>
     </div>
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12 p-0 border-right notes-list">
-      <app-notes-lists></app-notes-lists>
+      <app-notes-lists [editNote]="editNote"></app-notes-lists>
     </div>
     <div class="{{defaultLayout ? defaultFolderEditorLayout: changedFolderEditorLayout}}">
       <app-notes-editor></app-notes-editor>

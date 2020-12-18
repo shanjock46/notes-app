@@ -5,6 +5,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import {SkeletonComponent} from './components/skeleton/skeleton.component';
 import {NotesFoldersComponent} from './components/notes-folders/notes-folders.component';
 import {NotesListsComponent} from './components/notes-lists/notes-lists.component';
@@ -23,6 +24,7 @@ import {NotesService} from './services/notes.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),

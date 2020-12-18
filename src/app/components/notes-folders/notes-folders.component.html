@@ -1,55 +1,94 @@
 <div class="notes-folders-container h-100">
-  <div class="row mb-0 top-bar">
-    <span class="col-md-12 nav-item float-right">
-      <a class="nav-link" href="/"><b>My Notes</b></a>
-    </span>
-    <!--<span class="col-md-6 sorting mb-0 pb-0">
-      <span class="float-right mr-2"><button (click)="sortDesc()" class="btn btn-light"><i
-      class="fas fa-sort-alpha-down-alt"></i></button></span>
-      <span class="float-right mr-2"><button (click)="sortAsc()" class="btn btn-light"><i
-        class="fas fa-sort-alpha-up"></i></button></span>
-    </span>-->
+  <div class="container-fluid navbar-fixed-top">
+    <div class="row mb-0 top-bar">
+      <span class="col-md-12 nav-item float-right">
+        <a class="nav-link" href="/"><b>My Notes</b></a>
+      </span>
+      <!--<span class="col-md-6 sorting mb-0 pb-0">
+        <span class="float-right mr-2"><button (click)="sortDesc()" class="btn btn-light"><i
+        class="fas fa-sort-alpha-down-alt"></i></button></span>
+        <span class="float-right mr-2"><button (click)="sortAsc()" class="btn btn-light"><i
+          class="fas fa-sort-alpha-up"></i></button></span>
+      </span>-->
+    </div>
   </div>
   <!--  <span style="color: aliceblue">{{folderLists | json}}</span>-->
+<!--    <span style="color: aliceblue">{{folders | json}}</span>-->
+
+<!--  <ng-container *ngFor="let item of folders | keyvalue" style="color: aliceblue">-->
+<!--    Key: <b>{{item.key}}</b> and Value: <b>{{item.value | json}}</b>-->
+<!--    id: {{item.value.id}}, name: {{item.value.name}}, selected: {{item.value.selected}}<br>-->
+<!--    <li [attr.data-folderId]="item.value.id"-->
+<!--        [ngClass]="{'active' : item.value.selected === true}"-->
+<!--        class="row list-group-item d-flex justify-content-between align-items-center">-->
+<!--      <span class="col-md-7">-->
+<!--        <span (click)="selectFolder($event, item.value.id, folderList)"-->
+<!--              [ngClass]="{'disabledEvents' : item.value.selected === true, 'makeCursor': item.value.selected === false}"-->
+<!--              class="text-break custFont"> {{item.value.name}} </span>-->
+<!--        <input #updateNewFolderField (keydown)="keydown($event,item.value.id)" (mouseleave)="keydown($event, item.value.id)"-->
+<!--               [value]="item.value.name" class="form-control custFont EditNewFolder d-none" mdbInput-->
+<!--               placeholder="New Folder" type="text">-->
+<!--      </span>-->
+<!--      <span class="col-md-5 float-right right-aside">-->
+<!--          <span [ngClass]="{'row' : item.value.name !== 'Notes'}">-->
+<!--            <span [ngClass]="{'d-none' : item.value.name === 'Notes'}" class="col-md-7 p-0">-->
+<!--              <span class="col-md-3 pr-0 makeCursor">-->
+<!--                <i (click)="editFolder($event, item.value.id, updateNewFolderField)" class="far fa-edit"></i>-->
+<!--              </span>-->
+<!--              <span class="col-md-3 pr-0 makeCursor">-->
+<!--                <i (click)="deleteFolder($event, item.value.id, folderList)" class="far fa-trash-alt"></i>-->
+<!--              </span>-->
+<!--            </span>-->
+<!--            <span [ngClass]="{'float-right' : item.name === 'Notes'}"-->
+<!--                              class="col-md-4 pr-0 notes-count">{{notes.length}}</span>-->
+<!--          </span>-->
+<!--        </span>-->
+<!--    </li>-->
+<!--  </ng-container>-->
+<!--  <span style="color: aliceblue">{{allNotes | json}}</span>-->
   <ul #folderList class="container-fluid list-group rmplr folders-list">
-    <ng-container *ngFor="let list of folderLists">
-      <li [attr.data-folderId]="list.id"
-          [ngClass]="{'active' : list.selected === true}"
+    <ng-container *ngFor="let item of folders">
+<!--      <span style="color: aliceblue">{{item | json}}</span>-->
+      <li [attr.data-folderId]="item.id"
+          [ngClass]="{'active' : item.selected === true}"
           class="row list-group-item d-flex justify-content-between align-items-center">
-        <span class="col-md-7">
-          <span (click)="selectFolder($event, list.id, folderList)"
-                [ngClass]="{'disabledEvents' : list.selected === true, 'makeCursor': list.selected === false}"
-                class="text-break custFont"> {{list.name}} </span>
-          <input #updateNewFolderField (keydown)="keydown($event,list.id)" (mouseleave)="keydown($event, list.id)"
-                 [value]="list.name" class="form-control custFont EditNewFolder d-none" mdbInput
-                 placeholder="New Folder" type="text">
-        </span>
-        <span class="col-md-5 float-right right-aside">
-          <span [ngClass]="{'row' : list.id !== '1'}">
-            <span [ngClass]="{'d-none' : list.id === '1'}" class="col-md-7 p-0">
-              <span class="col-md-3 pr-0 makeCursor">
-                <i (click)="editFolder($event, list.id, updateNewFolderField)" class="far fa-edit"></i>
-              </span>
-              <span class="col-md-3 pr-0 makeCursor">
-                <i (click)="deleteFolder($event, list.id, folderList)" class="far fa-trash-alt"></i>
-              </span>
+      <span class="col-md-7">
+        <span (click)="selectFolder($event, item.id, folderList)"
+              [ngClass]="{'disabledEvents' : item.selected === true, 'makeCursor': item.selected === false}"
+              class="text-break custFont w-100"> {{item.name}} </span>
+        <input #updateNewFolderField (keydown)="keydown($event,item.id)" (mouseleave)="keydown($event, item.id)"
+               [value]="item.name" class="form-control custFont EditNewFolder d-none" mdbInput
+               placeholder="New Folder" type="text">
+      </span>
+      <span class="col-md-5 float-right right-aside">
+        <span [ngClass]="{'row' : item.name !== 'Notes'}">
+          <span [ngClass]="{'d-none' : item.name === 'Notes'}" class="col-md-7 p-0">
+            <span class="col-md-3 pr-0 makeCursor">
+              <i (click)="editFolder($event, item.id, updateNewFolderField)" class="far fa-edit"></i>
             </span>
-            <span [ngClass]="{'float-right' : list.id === '1'}"
-                  class="col-md-4 pr-0 notes-count">{{list.notes.length}}</span>
+            <span class="col-md-3 pr-0 makeCursor">
+              <i (click)="deleteFolder($event, item.id, folderList)" class="far fa-trash-alt"></i>
+            </span>
           </span>
+          <span *ngIf="item.selected === true" [ngClass]="{'float-right' : item.name === 'Notes'}"
+                class="col-md-4 pr-0 notes-count">{{notes.length}}</span>
+          <span *ngIf="item.selected !== true && allNotes[item.id]" [ngClass]="{'float-right' : item.name === 'Notes'}"
+                class="col-md-4 pr-0 notes-count">{{allNotes[item.id].length}}</span>
+          <span *ngIf="item.selected !== true && !allNotes[item.id]" [ngClass]="{'float-right' : item.name === 'Notes'}"
+                class="col-md-4 pr-0 notes-count">0</span>
         </span>
+      </span>
       </li>
     </ng-container>
     <li class="row list-group-item d-flex justify-content-between align-items-center p-0">
       <input #addNewFolderField (keydown)="keydown($event)" (mouseleave)="keydown($event)" [value]="newFolderName"
              class="form-control createNewFolder m-3 invisible" mdbInput placeholder="New Folder" type="text">
     </li>
-    <div class="position-absolute fixed-bottom ml-2 mb-2">
-    <span (click)="addNewFolder()" class="btn add-new-folder">
-      <i class="fas fa-plus-circle mr-1"></i>
-      New Folder
-    </span>
-    </div>
   </ul>
-
+  <div class="position-absolute fixed-bottom ml-2 mb-2">
+      <span (click)="addNewFolder()" class="btn add-new-folder">
+        <i class="fas fa-plus-circle mr-1"></i>
+        New Folder
+      </span>
+  </div>
 </div>
