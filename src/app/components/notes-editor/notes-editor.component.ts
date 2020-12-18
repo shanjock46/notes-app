@@ -60,7 +60,7 @@ export class NotesEditorComponent implements OnInit {
           this.notesService.notes = this.notes;
           this.editNote = updatedNoteData;
           const sortedNotes = await this.notesService.sortNotesDesc();
-          console.log(sortedNotes);
+          // console.log(sortedNotes);
           this.notes = JSON.parse(JSON.stringify(sortedNotes.notesList));
           this.notesService.sendSelectedNote(this.notesService.activeFolder, this.notesService.activeNote, this.notes);
         },
