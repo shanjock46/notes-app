@@ -107,10 +107,18 @@ export class NotesService {
     if (typeof (this.notes) !== 'undefined') {
       this.notes.sort((a, b) => b.updated - a.updated);
       for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].selected) {
+        if (i === 0) {
           this.activeNote = i;
           this.activeNoteId = this.notes[i].id;
-          break;
+          if (!this.notes[i].selected) {
+            this.notes[i].selected = true;
+            this.updateNote(this.notes[i]);
+          }
+        }else{
+          if (this.notes[i].selected){
+            this.notes[i].selected = false;
+            this.updateNote(this.notes[i]);
+          }
         }
       }
       const retVal = { activeNoteLi: this.activeNote, activeNoteId: this.activeNoteId, notesList: this.notes };
