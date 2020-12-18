@@ -42,21 +42,25 @@ export class NotesEditorComponent implements OnInit {
 
     const source = interval(30000);
     // console.log(this.notesTextArea);
-    this.subscription = source.subscribe(data => this.updateNote());
+    this.subscription = source.subscribe(data => this.updateNote(true));
   }
 
 
-  updateNote(): void {
+  updateNote(fromTimeInterval): void {
     let updateFlag = false;
-    if (this.notes[this.notesService.activeNote].content.length !== this.editNote.content.length){
-      if (this.notes[this.notesService.activeNote].content.length > this.editNote.content.length
-        && ((this.notes[this.notesService.activeNote].content.length - this.editNote.content.length) > 5)){
-        updateFlag = true;
-      }else {
-        if ((this.editNote.content.length - this.notes[this.notesService.activeNote].content.length) > 5){
+    if (!fromTimeInterval) {
+      if (this.notes[this.notesService.activeNote].content.length !== this.editNote.content.length) {
+        if (this.notes[this.notesService.activeNote].content.length > this.editNote.content.length
+          && ((this.notes[this.notesService.activeNote].content.length - this.editNote.content.length) > 5)) {
           updateFlag = true;
+        } else {
+          if ((this.editNote.content.length - this.notes[this.notesService.activeNote].content.length) > 5) {
+            updateFlag = true;
+          }
         }
       }
+    }else{
+      updateFlag = true;
     }
     if (updateFlag) {
       this.notes[this.notesService.activeNote].content = this.editNote.content;

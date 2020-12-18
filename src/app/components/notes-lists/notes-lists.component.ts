@@ -122,6 +122,7 @@ export class NotesListsComponent implements OnInit {
     if (this.notes.length > 0) {
       this.notes[this.notesService.activeNote].selected = false;
       this.notes[this.notesService.activeNote].content = this.editNote.content;
+      this.notes[this.notesService.activeNote].updated = new Date().getTime();
       this.notesService.updateNote(this.notes[this.notesService.activeNote]).subscribe((updatedNote) => {
         this.notes[this.notesService.activeNote] = updatedNote;
         this.notesService.notes = this.notes;
@@ -130,6 +131,7 @@ export class NotesListsComponent implements OnInit {
             this.notes[i].selected = true;
             this.notesService.activeNote = i;
             this.notesService.activeNoteId = this.notes[i].id;
+            // this.notes[i].updated = new Date().getTime();
             this.notesService.updateNote(this.notes[this.notesService.activeNote]).subscribe((selectUpdatedNote) => {
               this.notes[this.notesService.activeNote] = selectUpdatedNote;
               this.notesService.notes = this.notes;
