@@ -35,8 +35,9 @@ export class NotesEditorComponent implements OnInit {
 
 
   updateNote(fromTimeInterval): void {
-    let updateFlag = false;
-    if (!fromTimeInterval) {
+    // let updateFlag = false;
+    const updateFlag = true;
+    /*if (!fromTimeInterval) {
       if (this.notes[this.notesService.activeNote].content.length !== this.editNote.content.length) {
         if (this.notes[this.notesService.activeNote].content.length > this.editNote.content.length
           && ((this.notes[this.notesService.activeNote].content.length - this.editNote.content.length) > 5)) {
@@ -49,7 +50,7 @@ export class NotesEditorComponent implements OnInit {
       }
     } else {
       updateFlag = true;
-    }
+    }*/
     if (updateFlag && typeof this.editNote !== 'undefined') {
       this.notes[this.notesService.activeNote].content = this.editNote.content;
       this.notes[this.notesService.activeNote].selected = true;

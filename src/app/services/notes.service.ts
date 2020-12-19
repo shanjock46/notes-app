@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class NotesService {
-  public folderLists: any[];
+  // public folderLists: any[];
   public activeFolder: number;
   public activeFolderId: string;
   public activeNote: number;
@@ -24,7 +24,7 @@ export class NotesService {
 
   constructor(private http: HttpClient) {
     this.url = 'https://notes-app-json-mock.herokuapp.com';
-    this.folderLists = Object.assign([], [{
+    /*this.folderLists = Object.assign([], [{
       id: '1', name: 'Notes', selected: true, notes: [
         {
           activeNote: '1',
@@ -33,7 +33,7 @@ export class NotesService {
           updated: new Date().getTime()
         }
       ]
-    }]);
+    }]);*/
     this.defaultLayout = true;
     this.folders = [];
     this.allNotes = [];
