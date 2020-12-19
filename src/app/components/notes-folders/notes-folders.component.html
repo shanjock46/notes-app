@@ -12,14 +12,14 @@
       <li [attr.data-folderId]="item.id"
           [ngClass]="{'active' : item.selected === true}"
           class="row list-group-item d-flex justify-content-between align-items-center">
-      <span class="col-md-7">
+<!--      <span class="">-->
         <span (click)="selectFolder($event, item.id, folderList)"
               [ngClass]="{'disabledEvents' : item.selected === true, 'makeCursor': item.selected === false}"
-              class="text-break custFont w-100"> {{item.name}} </span>
+              class="col-md-7 text-break custFont w-100 pr-1"> {{item.name}} </span>
         <input #updateNewFolderField (keydown)="keydown($event,item.id)" (mouseleave)="keydown($event, item.id)"
                [value]="item.name" class="form-control custFont EditNewFolder d-none" mdbInput
                placeholder="New Folder" type="text">
-      </span>
+<!--      </span>-->
         <span class="col-md-5 float-right right-aside">
         <span [ngClass]="{'row' : item.name !== 'Notes'}">
           <span [ngClass]="{'d-none' : item.name === 'Notes'}" class="col-md-7 p-0">
