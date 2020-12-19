@@ -61,27 +61,33 @@ export class NotesListsComponent implements OnInit {
       this.notesService.updateNote(this.notes[this.notesService.activeNote]).subscribe((updatedNote) => {
         this.notes[this.notesService.activeNote] = updatedNote;
         this.notesService.notes = this.notes;
-        this.notesService.saveNote({
-          folderId: this.notesService.activeFolderId,
-          content: 'New note',
-          selected: true,
-          updated: new Date().getTime()
-        }).subscribe(
-          async newNoteData => {
-            this.notes.push(newNoteData);
-            this.notesService.notes = this.notes;
-            const sortedNotes = await this.notesService.sortNotesDesc();
-            console.log(sortedNotes);
-            this.notes = JSON.parse(JSON.stringify(sortedNotes.notesList));
-            this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.notes);
-          },
-          error => {
-            console.log('Error', error);
-          });
+        this.saveNote();
       }, error => {
         console.log('Error', error);
       });
+    }else{
+      this.saveNote();
     }
+  }
+
+  private saveNote(): void {
+    this.notesService.saveNote({
+      folderId: this.notesService.activeFolderId,
+      content: 'New note',
+      selected: true,
+      updated: new Date().getTime()
+    }).subscribe(
+      async newNoteData => {
+        this.notes.push(newNoteData);
+        this.notesService.notes = this.notes;
+        const sortedNotes = await this.notesService.sortNotesDesc();
+        console.log(sortedNotes);
+        this.notes = JSON.parse(JSON.stringify(sortedNotes.notesList));
+        this.notesService.sendSelectedNote(this.notesService.activeFolder, 0, this.notes);
+      },
+      error => {
+        console.log('Error', error);
+      });
   }
 
   selectNote($event: MouseEvent, id: any, notesList: HTMLUListElement): void {

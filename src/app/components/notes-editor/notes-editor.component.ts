@@ -29,7 +29,7 @@ export class NotesEditorComponent implements OnInit {
       this.defaultLayout = data.toggleLayouts;
     });
 
-    const source = interval(30000);
+    const source = interval(20000);
     this.subscription = source.subscribe(data => this.updateNote(true));
   }
 

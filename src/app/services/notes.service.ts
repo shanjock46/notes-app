@@ -88,7 +88,7 @@ export class NotesService {
 
   sortFoldersAsc(): Promise<any> {
     if (typeof (this.folders) !== 'undefined') {
-      this.folders.sort((a, b) => a.name.localeCompare(b.name));
+      this.folders.sort((a, b) => a.name.toString().localeCompare(b.name.toString()));
       for (let i = 0; i < this.folders.length; i++) {
         if (this.folders[i].selected) {
           this.activeFolder = i;

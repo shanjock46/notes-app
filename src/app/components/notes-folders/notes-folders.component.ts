@@ -43,15 +43,32 @@ export class NotesFoldersComponent implements OnInit {
 
   saveFolder($event): void {
     const currTarget = $event.currentTarget;
-    const nameVal = currTarget.value;
-    let count = 1;
+    let nameVal = currTarget.value.toString().trim();
+
+    const nameOccurCount = new Map();
+    let newFolderCount = 0;
     for (let i = 0; i < this.folders.length; i++) {
+      if (this.folders[i].name in nameOccurCount) {
+        nameOccurCount.set(this.folders[i].name.toString().trim(), Number(nameOccurCount.get(this.folders[i].name)) + 1);
+      } else {
+        nameOccurCount.set(this.folders[i].name.toString().trim(), 1);
+      }
       if (this.folders[i].name.indexOf('New Folder') !== -1) {
-        count++;
+        newFolderCount++;
+      }
+    }
+    const count = nameOccurCount.get(nameVal);
+    if (typeof count !== 'undefined') {
+      if (nameVal === 'New Folder'){
+        nameVal = nameVal + ' ';
+        nameVal += (newFolderCount + 1);
+      } else{
+        nameVal = nameVal + ' ';
+        nameVal += (count + 1);
       }
     }
 
-    this.notesService.saveFolder({name: nameVal + ' ' + count + 1, selected: false}).subscribe(
+    this.notesService.saveFolder({name: nameVal, selected: false}).subscribe(
       async newFolderData => {
         this.folders.push(newFolderData);
         this.notesService.folders = this.folders;
