@@ -32,10 +32,9 @@
       <li [attr.data-noteId]="list.id"
           [ngClass]="{'active' : list.selected === true}"
           class="custmr list-group-item d-flex justify-content-between align-items-center">
-        <span class="col-md-12 pl-0">
-          <span (click)="selectNote($event, list.id, notesListUl)"
-                [ngClass]="{'disabledEvents' : list.selected === true, 'makeCursor': list.selected === false}"
-                class="text-break custFont"> <b>{{list.content | slice:0:25}}</b> </span><br/>
+        <span class="col-md-12 pl-0" (click)="selectNote($event, list.id, notesListUl)"
+              [ngClass]="{'disabledEvents' : list.selected === true, 'makeCursor': list.selected === false}">
+          <span class="text-break custFont"> <b>{{list.content | slice:0:25}}</b> </span><br/>
           <span class="content-summary">{{list.content | slice:26:75}}</span>
         </span>
 
